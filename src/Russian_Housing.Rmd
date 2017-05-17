@@ -1,7 +1,10 @@
 ---
 title: "Russian Housing Analysis"
-output: github_document
+output: 
+  github_document:
+  toc: true
 always_allow_html: yes
+
 ---
 This is an extremely rich data set with features that are not anonymized, so it makes an excellent playground for exploratory data analysis. Between the train data and the macro data there are hundreds of variables. Although we obviously can't explore everything, I want to cover as much as is possible and interesting.
 
