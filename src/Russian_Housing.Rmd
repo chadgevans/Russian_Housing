@@ -1,7 +1,7 @@
 ---
 title: "Russian Housing Analysis"
 output: github_document
-
+always_allow_html: yes
 ---
 This is an extremely rich data set with features that are not anonymized, so it makes an excellent playground for exploratory data analysis. Between the train data and the macro data there are hundreds of variables. Although we obviously can't explore everything, I want to cover as much as is possible and interesting.
 
@@ -41,7 +41,7 @@ library(DT)
 
 ```{r}
 
-dtrain <- fread('../input/train.csv', stringsAsFactors=TRUE)
+dtrain <- fread('../data/train.csv', stringsAsFactors=TRUE)
 
 ```
 
@@ -585,9 +585,10 @@ I plan on adding a lot more to this section soon. Please check back!
 Now I am going to run a quick random forest model on dtrain so that we can use the resulting variable importance values. In order to avoid having to impute missing data right now, I am going to subset dtrain to only include those observations that have values for every variable. This is about 6000 samples, or about 1/5th of the full data set. This should be a large enough sample just to get a rough idea of what variables have the most predictive power.
 
 
-```{r}
+```{r eval = FALSE}
 
 library(caret)
+library(randomForest)
 
 #Get complete cases of dtrain
 completes <- complete.cases(dtrain)
@@ -617,7 +618,7 @@ There has been a lot of discussion in the forums about the test data for this co
 
 ```{r}
 
-dtest <- fread('../input/test.csv', stringsAsFactors=TRUE)
+dtest <- fread('../data/test.csv', stringsAsFactors=TRUE)
 
 ```
 
@@ -650,7 +651,7 @@ select(-price_doc) %>%
 mutate(dataset='train')
 
 dtest <- dtest %>%
-mutate(dataset='test', timestamp=as.Date(timestamp))
+mutate(dataset='test', timestamp=as.Date(timestamp, format = "%m/%d/%Y"))
 
 all_data <- bind_rows(dtrain, dtest)
 
