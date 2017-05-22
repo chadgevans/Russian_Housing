@@ -137,7 +137,6 @@ There are 37 observations where life_sq is greater than full_sq.
 Let's look at num_rooms.
 
 ```{r}
- 
 table(dtrain$num_room)
 
 ggplot(aes(x=num_room), data=dtrain) +
@@ -351,14 +350,6 @@ geom_abline(slope=1, intercept=0, color='grey')
 
 The observations below the grey identity line have a floor greater than the number of floors in the building. That's not good. How many are there?
 
-```{r}
-
-dtrain %>%
-select(id, floor, max_floor) %>%
-filter(floor > max_floor) %>%
-datatable()
-
-```
 
 There are 1,493 observations where this is the case.
 
