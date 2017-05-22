@@ -137,7 +137,7 @@ There are 37 observations where life_sq is greater than full_sq.
 Let's look at num_rooms.
 
 ```{r}
-
+ 
 table(dtrain$num_room)
 
 ggplot(aes(x=num_room), data=dtrain) +
