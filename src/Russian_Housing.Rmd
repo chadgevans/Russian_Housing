@@ -1,7 +1,7 @@
 ---
 title: "Russian Housing Analysis"
 output: 
-  github_document:
+  html_document:
   toc: true
 always_allow_html: yes
 
@@ -350,9 +350,15 @@ geom_abline(slope=1, intercept=0, color='grey')
 
 The observations below the grey identity line have a floor greater than the number of floors in the building. That's not good. How many are there?
 
+```{r}
+dtrain %>%
+select(id, floor, max_floor) %>%
+filter(floor > max_floor) %>%
+datatable()
+
+```
 
 There are 1,493 observations where this is the case.
-
 
 ## Demographic Characteristics {#demographic}
 
